@@ -8,3 +8,73 @@ Version: 1.0
 Tags: nathaliemota, photoevent, photographe
 Text Domain: photoevent
 */
+
+/* space-mono-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/space-mono-v13-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* space-mono-italic - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Space Mono';
+    font-style: italic;
+    font-weight: 400;
+    src: url('assets/fonts/space-mono-v13-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* space-mono-700italic - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Space Mono';
+    font-style: italic;
+    font-weight: 700;
+    src: url('assets/fonts/space-mono-v13-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  /* poppins-300 - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    src: url('assets/fonts/poppins-v20-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+header.header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation .menu-class li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
+.main-navigation .menu-class a, .footer-menu-class a {
+    color: black;
+    text-decoration: none;
+}
+
+.logo a img {
+    width: 70%;
+}
+
+.footer-menu {
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+.footer-menu-class li {
+    display: inline-block;
+    margin-right: 15px;
+}
