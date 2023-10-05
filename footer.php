@@ -1,4 +1,4 @@
-<?php get_template_part( 'modale' ); ?>
+<?php get_template_part( 'template_part/modale' ); ?>
 <?php wp_footer(); ?>
 <div class="footer-menu">
     <?php

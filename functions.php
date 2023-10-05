@@ -21,13 +21,7 @@ function theme_enqueue_style()
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_style');
 
-function enqueue_custom_script() {
-    // Enregistrez le script
-    wp_register_script('script', get_template_directory_uri() . '/script.js', array('jquery'), '1.0', true);
-
-    // Chargez le script
-    wp_enqueue_script('script');
+add_action( 'wp_enqueue_scripts', 'add_scripts');
+function add_scripts() {
+    wp_enqueue_script( 'script', get_template_directory_uri() . '/script.js', array( 'jquery' ), 1.1, true);
 }
-
-// Action pour charger le script
-add_action('wp_enqueue_scripts', 'enqueue_custom_script');

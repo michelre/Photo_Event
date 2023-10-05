@@ -3,7 +3,8 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    
+    <script type='text/javascript' src='http://localhost/nathalie_mota/wp-content/themes/Photo_Event/script.js?ver=1.1' id='script-js'></script>
+ 
     <?php wp_head(); ?>
 </head>
 
@@ -22,7 +23,7 @@
                     'menu_class' => 'menu-class', // Classe CSS du menu (peut être personnalisée)
                     'container' => false, // Ne pas inclure de conteneur autour du menu
                 ));
-            ?>
+            ?> 
         </nav>
   </header>
 <?php wp_body_open(); ?>
