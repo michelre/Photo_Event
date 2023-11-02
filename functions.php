@@ -25,3 +25,29 @@ add_action( 'wp_enqueue_scripts', 'add_scripts');
 function add_scripts() {
     wp_enqueue_script( 'script', get_template_directory_uri() . '/script.js', array( 'jquery' ), 1.1, true);
 }
+
+function register_post_types() {
+	// La déclaration de nos Custom Post Types et Taxonomies ira ici
+    // CPT Photo
+    $labels = array(
+        'name' => 'Photo',
+        'all_items' => 'Toutes les photos',  // affiché dans le sous menu
+        'singular_name' => 'Photo',
+        'add_new_item' => 'Ajouter une photo',
+        'edit_item' => 'Modifier la photo',
+        'menu_name' => 'Photo'
+    );
+
+	$args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor','thumbnail' ),
+        'menu_position' => 5, 
+        'menu_icon' => 'dashicons-camera',
+	);
+
+	register_post_type( 'photo', $args );
+}
+add_action( 'init', 'register_post_types' );

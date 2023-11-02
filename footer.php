@@ -4,8 +4,8 @@
     <?php
     wp_nav_menu(array(
         'theme_location' => 'footer-menu',
-        'menu_id' => 'footer-menu-id', // ID du menu (peut être personnalisé)
-        'menu_class' => 'footer-menu-class', // Classe CSS du menu (peut être personnalisée)
+        'menu_id' => 'footer-menu-id', // ID du menu
+        'menu_class' => 'footer-menu-class', // Classe CSS du menu
     ));
     ?>
 </div>
