@@ -25,7 +25,7 @@ get_header();
   <div class="custom">  
         <div class="custom-contact">
                 <p>Cette photo vous intéresse ?</p>
-                <a href="#myModal">
+                <a class="contact-btn">
                     <input type="button" value="Contact">
                 </a>
         </div>
@@ -50,12 +50,12 @@ get_header();
 			<div class="arrows">
 				<div>
                 <a href="<?php echo get_the_permalink($precedent) ?>">
-					<img class="arrowleft" src="<?php echo get_stylesheet_directory_uri($precedent) . '/assets/img/arrow_left.png' ?>">
+					<img class="arrow-left" src="<?php echo get_stylesheet_directory_uri($precedent) . '/assets/img/arrow_left.png' ?>">
                 </a>
 				</div>
 				<div>
                 <a href="<?php echo get_the_permalink($suivant) ?>">
-					<img class="arrowright" src="<?php echo get_stylesheet_directory_uri($suivant) . '/assets/img/arrow_right.png' ?>">
+					<img class="arrow-right" src="<?php echo get_stylesheet_directory_uri($suivant) . '/assets/img/arrow_right.png' ?>">
                 </a>
 				</div>
 			</div>
@@ -87,11 +87,7 @@ get_header();
     </div>
 
     <div class="button-photos">
-        <?php
-            $categorie_act = get_the_terms(get_the_ID(), 'categorie')[0];
-            $all_photos = get_term_link($categorie_act);
-        ?>
-        <a href="<?php echo $all_photos; ?>" class="all-photos-button">Toutes les photos</a>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="all-photos-button">Toutes les photos</a>
     </div>
 
 </div>

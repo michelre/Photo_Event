@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Ajouter la prise en charge des images mises en avant
 add_theme_support( 'post-thumbnails' );
@@ -44,10 +44,87 @@ function register_post_types() {
         'show_in_rest' => true,
         'has_archive' => true,
         'supports' => array( 'title', 'editor','thumbnail' ),
-        'menu_position' => 5, 
+        'menu_position' => 5,
         'menu_icon' => 'dashicons-camera',
 	);
 
 	register_post_type( 'photo', $args );
 }
 add_action( 'init', 'register_post_types' );
+
+function afficherTaxonomies($nomTaxonomie) {
+    if($terms = get_terms(array(
+        'taxonomy' => $nomTaxonomie,
+        'orderby' => 'name'
+    ))) {
+        foreach ( $terms as $term ) {
+            echo '<option class="js-filter-item" value="' . $term->slug . '">' . $term->name . '</option>';
+        }
+    }
+}
+
+function afficherImages($galerie, $exit) {
+    if($galerie->have_posts()) {
+        while ($galerie->have_posts()) { ?>
+        <?php $galerie->the_post(); ?>
+            <div class="colonne"
+                 data-ref="<?php echo strip_tags(get_field('reference', $galerie->ID)); ?>"
+                 data-category="<?php echo strip_tags(get_the_term_list($galerie->ID, 'categorie')); ?>">
+                <div class="rangee">
+                    <img class="img-medium" src="<?php echo the_post_thumbnail_url(); ?>" />
+                    <div>
+                        <div class="img-hover" >
+                            <img class="btn-plein-ecran" src="<?php echo get_template_directory_uri(); ?>/assets/img/Icon_fullscreen.png" alt="Icône fullscreen" />
+                            <a href="<?php echo get_post_permalink(); ?>">
+                                <img class="btn-oeil" src="<?php echo get_template_directory_uri(); ?>/assets/img/Icon_eye.png" alt="Icône oeil" />
+                            </a>
+                            <div class="img-infos">
+                                <p><?php the_title(); ?></p>
+                                <p><?php echo strip_tags(get_the_term_list($galerie->ID, 'categorie')); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <?php
+        }
+    }
+    else {
+        echo "";
+    }
+    wp_reset_postdata();
+    if ($exit) {
+        exit();
+    }
+}
+
+function filter() {
+    $requeteAjax = new WP_Query(array(
+        'post_type' => 'photo',
+        'orderby' => 'date',
+        'order' => $_POST['orderDirection'],
+        'posts_per_page' => 4,
+        'paged' => $_POST['page'],
+        'tax_query' =>
+            array(
+                'relation' => 'AND',
+                $_POST['categorieSelection'] != "all" ?
+                    array(
+                        'taxonomy' => $_POST['categorieTaxonomie'],
+                        'field' => 'slug',
+                        'terms' => $_POST['categorieSelection'],
+                    )
+                : '',
+                $_POST['formatSelection'] != "all" ?
+                    array(
+                        'taxonomy' => $_POST['formatTaxonomie'],
+                        'field' => 'slug',
+                        'terms' => $_POST['formatSelection'],
+                    )
+                : '',
+            )
+        )
+    );
+    afficherImages($requeteAjax, true);
+}
+add_action('wp_ajax_nopriv_filter', 'filter');
+add_action('wp_ajax_filter', 'filter');
